@@ -1,0 +1,7 @@
+keycloakdb
+spacetimedb-data
+node_modules
+dist
+build
+coverage
+spacetimedb-keys/id_ecdsa
