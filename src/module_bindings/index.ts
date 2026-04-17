@@ -36,7 +36,6 @@ import {
 // Import all reducer arg schemas
 import AddReducer from "./add_reducer";
 import AdminonlyReducer from "./adminonly_reducer";
-import SayHelloReducer from "./say_hello_reducer";
 
 // Import all procedure arg schemas
 
@@ -60,7 +59,6 @@ const tablesSchema = __schema({
 const reducersSchema = __reducers(
   __reducerSchema("add", AddReducer),
   __reducerSchema("adminonly", AdminonlyReducer),
-  __reducerSchema("say_hello", SayHelloReducer),
 );
 
 /** The schema information for all procedures in this module. This is defined the same way as the procedures would have been defined in the server. */

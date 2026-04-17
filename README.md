@@ -1,6 +1,13 @@
 # Spacetimedb locally with Keycloak
 
-## Step 1 generate keys for spacetimedb
+Requirements
+
+- bun <https://bun.sh/>
+- spacetimedb cli <https://spacetimedb.com/install>
+- jq `apt install`
+
+
+## Generate keys for spacetimedb
 
 ```sh
 # Unless already generated
@@ -55,7 +62,7 @@ Go to the _Roles_ tab
 
 Create a role named `admin` with the description `spacecloak admins`
 
-Go to the Credentials tab and copy the Client Secret into the `test.sh` script
+Go to the Credentials tab and copy the Client Secret into the `client.sh` script
 
 ### Groups
 
@@ -69,6 +76,25 @@ Create a new user called `testuser` and give it the password `password`
 
 Go to the Groups tab  for `testuser` and assign it `spacecloak-admins`
 
+### Audience
+
+Go to your realm -> Clients -> spacetimedb-local
+
+Click the Client scopes tab
+
+Click spacetimedb-local-dedicated (the dedicated scope)
+
+Click Add mapper -> By configuration -> Audience
+
+Fill in:
+
+| Field | Value |
+|---|---|
+| Name | spacetimedb-audience |
+| Included Client Audience | spacetimedb-local |
+| Add to access token | ON |
+
+Click Save
 
 ## Test it
 
@@ -77,7 +103,19 @@ sudo chown -R $(id -u):$(id -g) spacetimedb-keys spacetimedb-data spacetimedb-co
 spacetime logout
 spacetime login --server-issued-login local
 spacetime generate
-spacetime publish --clear-database spacecloakdb
-spacetime call add Alice
-./test.sh
+spacetime publish spacecloakdb
+```
+
+## Start the client
+
+```sh
+./client.sh
+```
+
+in a separate terminal add some values and watch the client update in real time
+
+```sh
+./add.sh alice
+./add.sh bob
+./add.sh charlie
 ```
