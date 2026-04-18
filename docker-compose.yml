@@ -26,6 +26,8 @@ services:
     command: start-dev
     ports:
       - "8080:8080"   # Keycloak admin console & OIDC endpoints
+    volumes:
+      - ./keycloak.sh:/opt/keycloak/bin/keycloak.sh:ro
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin

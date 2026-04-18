@@ -32,6 +32,12 @@ Before accessing Keycloak set the following in your hostsfile, this is important
 127.0.0.1 keycloak
 ```
 
+now do
+
+```sh
+docker compose exec keycloak bash /opt/keycloak/bin/keycloak.sh
+```
+
 now open `http://keycloak:8080` and login with admin/admin
 
 ### Realm
